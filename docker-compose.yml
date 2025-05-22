@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  niche-api:
+    build: .
+    container_name: niche_grouping_api
+    ports:
+      - "8002:8002"
+    restart: unless-stopped

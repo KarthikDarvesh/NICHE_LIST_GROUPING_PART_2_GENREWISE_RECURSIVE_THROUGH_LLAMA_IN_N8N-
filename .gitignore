@@ -1,0 +1,42 @@
+# =========================
+# Python Bytecode & Cache
+# =========================
+__pycache__/
+*.py[cod]
+*.so
+
+# =========================
+# Jupyter Notebook Checkpoints
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Virtual Environments
+# =========================
+myenv/
+.venv/
+.env
+
+
+# =========================
+# Duplicate or Experimental Files
+# =========================
+Duplicate_Code_File/
+__pycache__/
+*copy*.py
+*copy*.ipynb
+*copy*.txt
+
+# =========================
+# VSCode & System Files
+# =========================
+.vscode/
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs, Temp & Misc
+# =========================
+*.log
+*.bak
+*.tmp

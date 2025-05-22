@@ -1,0 +1,2 @@
+docker build -t niche_grouping_api .
+docker run --gpus all -p 8002:8002 niche_grouping_api
