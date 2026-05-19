@@ -1,3 +1,36 @@
+> # **📌 Note:** Please understand **Part 1** first before reading **Part 2**, since Part 2 uses the output generated from Part 1.
+## 🎯 Problem Statement
+
+- YouTube already provides a `genre_name` list for videos.  
+- However, identifying the correct **niche** from a YouTube transcript is highly complex.  
+- Video transcripts are often **versatile and context-rich**, meaning a single video can belong to **multiple niches within one genre**.  
+- Performing this task **manually is difficult, time-consuming, and inconsistent for humans**, especially when analyzing large volumes of transcript data.
+
+## 💡 Solution
+
+Built an **Automated N8N Workflow** using an **LLM model** to intelligently analyze YouTube transcripts and identify niches.
+
+### Workflow Process
+
+1. **Transcript Understanding**
+   - The LLM analyzes the **context, meaning, and nuances** of the YouTube transcript.
+
+2. **Genre-Based Niche Generation**
+   - Based on the available YouTube `genre_name` list, the LLM automatically decides **which genre the transcript belongs to**.
+   - The model then generates **relevant niches** for that genre.
+
+3. **Multiple Niche Handling**
+   - Since one genre may contain **multiple related niches**, the system generates several niche candidates.
+
+4. **Niche Grouping with Machine Learning**
+   - Applied the **KNN (K-Nearest Neighbors) algorithm** to group similar niches together.
+
+5. **Final Niche Selection**
+   - After grouping, the workflow assigns a **single representative niche name** for each genre, which becomes the final selected niche.
+
+---
+---
+
 # 🔗 Project Suite Overview
 
 This system consists of **three standalone FastAPI projects**, each responsible for a specific stage in the **genre-wise niche grouping workflow**. These services are **linearly connected**, meaning the output of one becomes the input for the next.
@@ -60,6 +93,44 @@ This system consists of **three standalone FastAPI projects**, each responsible 
 ---
 
 ## 2️⃣ Niche_List_Grouping_Part_2_GenreWise_Recursive (🔥 Current Project)
+
+### 🔹 Part 2: Final Niche Selection (Using KNN)
+
+#### **Input**
+A batch of JSON records containing:
+- **One Genre**
+- **Multiple Raw Niches**
+
+#### **ML Processing with KNN**
+Since one genre may have multiple niche variations:
+
+- The **KNN (K-Nearest Neighbors)** model groups similar niches together.
+- Multiple related niches of the same genre are clustered into meaningful groups.
+
+#### **Example**
+```text
+AI Tools
+AI Productivity
+Generative AI
+Machine Learning
+↓
+Grouped as → "Artificial Intelligence"
+```
+
+#### **Final Niche Naming**
+- After grouping, the system assigns a **representative group name**.
+- That group name becomes the **final niche of the genre**.
+- The **raw generated niches are removed**, and only the **final grouped niche** is retained.
+
+#### **Final Output**
+```json
+{
+  "genre": "Technology",
+  "niche": "Artificial Intelligence"
+}
+```
+
+---
 
 At the initial step, this project takes clustered data from the `genre_pillar_niche_mapped_view`(View Table) table and calculates an average embedding for each cluster (i.e., for the collection of niches within a cluster). These averaged embeddings are prepared and used in the next stage of the pipeline.
 
