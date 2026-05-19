@@ -1,4 +1,5 @@
 > # **📌 Note:** Please understand **Part 1** first before reading **Part 2**, since Part 2 uses the output generated from Part 1.
+> https://github.com/KarthikDarvesh/NICHE_LIST_GROUPING_PART_1_GENREWISE_RECURSIVE_THROUGH_LLAMA_IN_N8N
 ## 🎯 Problem Statement
 
 - YouTube already provides a `genre_name` list for videos.  
